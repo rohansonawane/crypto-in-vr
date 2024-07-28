@@ -1,4 +1,4 @@
-# VR Algorand Explorer and Pera Wallet
+# Algorand Explorer (Crypto Transactions) in VR
 
 ## Overview
 
@@ -32,7 +32,7 @@ This project combines virtual reality (VR) technology with Algorand Explorer fun
 
 ## Contributors
 
-- Rohan Sonawane, Ratnesh Pawar, Abhishek Dhale, Nirmaan Goyal, Neil Duraiswami, Thivistan James
+- Rohan Sonawane, Ratnesh Pawar, Abhishek Dhale, Nirmaan Goyal
 
 ## Feedback and Support
 
