@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" data-expires="2017-07-28"
+      content="ArFv1ZeTwzkhjNE00uAE+XtiQB41fwqG/TqlFMLrepd9sforQSvQE/tgfIbUMYNuNre4QR1k4/z8xp2mV3dbhwwAAABeeyJvcmlnaW4iOiJodHRwczovL2FmcmFtZS5pbzo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjEiLCJleHBpcnkiOjE1MDEyMTcwMDIsImlzU3ViZG9tYWluIjp0cnVlfQ==">
+   <meta charset="utf-8">
+   <title>ORIZIN | Algorand Explorer | A-Frame.js Website </title>
+   <meta name="description" content="orizin Algorand Transaction Viewer">
+   <script src="js/aframe-master.min.js"></script>
+   <script src="js/aabb-collider.js"></script>
+   <script src="js/grab.js"></script>
+   <script src="js/ground.js"></script>
+   <script src="js/skyGradient.js"></script>
+   <script src="js/spatial-utils.js"></script>
+   <script src="https://unpkg.com/aframe-event-set-component@4.0.1/dist/aframe-event-set-component.min.js"></script>
+   <script src="https://unpkg.com/aframe-slice9-component/dist/aframe-slice9-component.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/jquery.session@1.0.0/jquery.session.min.js"></script>
+   <script src="https://gftruj.github.io/webzamples/aframe/controls/oculus-thumbstick-controls.js"></script>
+</head>
+<body>
+   <a-scene renderer="colorManagement: true;" cursor="rayOrigin: mouse" raycaster="objects: [cube]"
+      fog="color: #bc483e; near: 0; far: 65;">
+      <a-assets>
+         <a-asset-item id="ground" src="https://cdn.aframe.io/examples/tracked-controls/ground.glb"></a-asset-item>
+      </a-assets>
+      <a-image src="images/orizin-logo.png" width="2" height="2" position="-4.85795 6.75307 -1.53311" material=""
+         geometry="height: 1.2" rotation="3.3002368999535423 31.066344609788363 0"></a-image>
+      <img id="hero-image" src="images/bk.jpg" crossorigin="anonymous">
+      <img id="gradient-img" src="images/white-bg.avif" crossorigin="anonymous">
+      <a-entity position="0 0 -0.5">
+         <a-entity class="cube" mixin="cube" position="0.30 1.65 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="0 1.95 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="-0.30 1.65 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="0.60 1.35 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="0.60 1.05 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="0.60 0.75 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="0.60 0.45 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="0.60 0.15 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="0.30 0.75 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="0 0.75 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="-0.30 0.75 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="-0.60 1.35 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="-0.60 1.05 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="-0.60 0.75 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="-0.60 0.45 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="-0.60 0.15 0"></a-entity>
+         <a-entity id="sky" geometry="primitive: sphere; radius: 65;"
+            material="shader: skyGradient; colorTop: #7526da; colorBottom: #e885fd; side: back"></a-entity>
+         <a-entity ground></a-entity>
+         <a-entity light="type: point; color: #f4f4f4; intensity: 0.1; distance: 0" position="-2.5 1.2 2.2"></a-entity>
+         <a-entity light="type: point; color: #f4f4f4; intensity: 0.1; distance: 0" position="-20 -7 -40"></a-entity>
+         <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.25;" position="-8 10 -18"></a-entity>
+      </a-entity>
+
+      <a-entity position="0 1.7 -1" spatial-window="width: 8; height: 4">
+         <a-entity mixin="focus-animation">
+            <a-entity spatial-hero-image="src: #hero-image; width: 5; height: 3" position="-5.16001 0 2.57572"
+               rotation="0 55.916 0">
+               <a-text font="kelsonsans" value="Nice You are now Connected" align="center" width="3"
+                  position="0 0.91404 0.001" material="color: #283644" text="" scale="1.72742 1.56583 1"></a-text>
+               <a-text font="kelsonsans" value="Select the Service you want" align="center" width="3"
+                  position="0 0.55055 0.001" material="color: #283644" text="" scale="1.55881 1.45391 1"></a-text>
+               <!--- Menu -->
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8" position="-1.61 -0.5 0.1"
+                  text__text_service1="align: center;font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: Algorand Blockchain Explorer; wrapCount: 14.73; zOffset: 0.011; side: double"
+                  scale="1 1 2" link="href:explorer.html">
+               </a-entity>
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8" position="-0.513 -0.5 0.062"
+                  text__text_service1="align: center; font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: NFT Marketplace; wrapCount: 13.73; zOffset: 0.011; side: double; xOffset: 0.02; tabSize: 4.19"
+                  scale="1 1 2">
+               </a-entity>
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8" position="0.55931 -0.5 0.062"
+                  text__text_service1="align: center; font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: Pera Wallet; wrapCount: 14.73; zOffset: 0.011; side: double; xOffset: 0.02; tabSize: 4.19"
+                  scale="1 1 2" link="href:wallet.html">
+               </a-entity>
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8" position="1.616 -0.5 0.062"
+                  text__text_service1="align: center; font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: Algorand Smart Contract; wrapCount: 12.82; zOffset: 0.011; side: double; xOffset: 0.02; tabSize: 4.19"
+                  scale="1 1 2">
+               </a-entity>
+               <!--- Menu -->
+            </a-entity>
+            <a-entity spatial-hero-image="src: #hero-image; width: 5; height: 3" position="0 0 0.001">
+               <a-text font="kelsonsans" value="Nice You are now Connected" align="center" width="3"
+                  position="0 0.91404 0.001" material="color: #283644" text="" scale="1.72742 1.56583 1"></a-text>
+               <a-text font="kelsonsans" value="Select the Service you want" align="center" width="3"
+                  position="0 0.55055 0.001" material="color: #283644" text="" scale="1.55881 1.45391 1"></a-text>
+               <!--- Menu -->
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8" position="-1.61 -0.5 0.06239"
+                  text__text_service1="align: center;font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: Algorand Blockchain Explorer; wrapCount: 14.73; zOffset: 0.011; side: double"
+                  scale="1 1 2" link="href:explorer.html">
+               </a-entity>
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8" position="-0.513 -0.5 0.062"
+                  text__text_service1="align: center; font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: NFT Marketplace; wrapCount: 13.73; zOffset: 0.011; side: double; xOffset: 0.02; tabSize: 4.19"
+                  scale="1 1 2">
+               </a-entity>
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8" position="0.55931 -0.5 0.062"
+                  text__text_service1="align: center; font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: Pera Wallet; wrapCount: 14.73; zOffset: 0.011; side: double; xOffset: 0.02; tabSize: 4.19"
+                  scale="1 1 2" link="href:wallet.html">
+               </a-entity>
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8" position="1.616 -0.5 0.062"
+                  text__text_service1="align: center; font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: Algorand Smart Contract; wrapCount: 12.82; zOffset: 0.011; side: double; xOffset: 0.02; tabSize: 4.19"
+                  scale="1 1 2">
+               </a-entity>
+               <!--- Menu -->
+            </a-entity>
+            <a-entity spatial-hero-image="src: #hero-image; width: 5; height: 3" position="5.47908 0 2.57572"
+               rotation="0 -55.92 0">
+               <a-text font="kelsonsans" value="Nice You are now Connected" align="center" width="3"
+                  position="0 0.91404 0.001" material="color: #283644" text="" scale="1.72742 1.56583 1"></a-text>
+               <a-text font="kelsonsans" value="Select the Service you want" align="center" width="3"
+                  position="0 0.55055 0.001" material="color: #283644" text="" scale="1.55881 1.45391 1"></a-text>
+               <!--- Menu -->
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8" position="-1.61 -0.5 0.06239"
+                  text__text_service1="align: center;font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: Algorand Blockchain Explorer; wrapCount: 14.73; zOffset: 0.011; side: double"
+                  scale="1 1 2" link="href:explorer.html">
+               </a-entity>
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8" position="-0.513 -0.5 0.062"
+                  text__text_service1="align: center; font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: NFT Marketplace; wrapCount: 13.73; zOffset: 0.011; side: double; xOffset: 0.02; tabSize: 4.19"
+                  scale="1 1 2">
+               </a-entity>
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8" position="0.55931 -0.5 0.062"
+                  text__text_service1="align: center; font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: Pera Wallet; wrapCount: 14.73; zOffset: 0.011; side: double; xOffset: 0.02; tabSize: 4.19"
+                  scale="1 1 2" link="href:wallet.html">
+               </a-entity>
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8" position="1.616 -0.5 0.062"
+                  text__text_service1="align: center; font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: Algorand Smart Contract; wrapCount: 12.82; zOffset: 0.011; side: double; xOffset: 0.02; tabSize: 4.19"
+                  scale="1 1 2">
+               </a-entity>
+               <!--- Menu -->
+            </a-entity>
+         </a-entity>
+      </a-entity>
+      </a-entity>
+
+      <!--OCULUS Controls-->
+      <a-entity id="rig">
+         <a-camera position="0 1.6 6.20255" camera="" rotation="" look-controls="" wasd-controls=""
+            data-aframe-inspector-original-camera=""></a-camera>
+         <a-entity id="leftController" oculus-touch-controls="hand: left" oculus-thumbstick-controls></a-entity>
+         <a-entity id="rightController" oculus-touch-controls="hand: right" oculus-thumbstick-controls></a-entity>
+         <a-entity laser-controls="hand: left"></a-entity>
+         <a-entity laser-controls="hand: right"></a-entity>
+      </a-entity>
+      <!--OCULUS Controls-->
+   </a-scene>
+   <script src="js/app.js"></script>
+</body>
+</html>

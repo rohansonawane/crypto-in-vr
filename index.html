@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" data-expires="2017-07-28"
+        content="ArFv1ZeTwzkhjNE00uAE+XtiQB41fwqG/TqlFMLrepd9sforQSvQE/tgfIbUMYNuNre4QR1k4/z8xp2mV3dbhwwAAABeeyJvcmlnaW4iOiJodHRwczovL2FmcmFtZS5pbzo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjEiLCJleHBpcnkiOjE1MDEyMTcwMDIsImlzU3ViZG9tYWluIjp0cnVlfQ==">
+    <meta charset="utf-8">
+    <title>ORIZIN | Algorand Explorer | A-Frame.js Website </title>
+    <meta name="description" content="Orizin | Algorand Explorer | A-Frame.js Website ">
+    <script src="js/aframe-master.min.js"></script>
+    <script src="js/aabb-collider.js"></script>
+    <script src="js/grab.js"></script>
+    <script src="js/ground.js"></script>
+    <script src="js/skyGradient.js"></script>
+    <script src="js/spatial-utils.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@4.0.1/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-slice9-component/dist/aframe-slice9-component.min.js"></script>
+    <script src="https://gftruj.github.io/webzamples/aframe/controls/oculus-thumbstick-controls.js"></script>
+</head>
+<body>
+    <a-scene renderer="colorManagement: true;" cursor="rayOrigin: mouse" raycaster="objects: [cube]"
+        fog="color: #bc483e; near: 0; far: 65;">
+        <!-- Ground From a-frame -->
+        <a-assets>
+            <a-asset-item id="ground" src="https://cdn.aframe.io/examples/tracked-controls/ground.glb"></a-asset-item>
+        </a-assets>
+        <!-- Ground From a-frame -->
+
+        <a-image src="images/orizin-logo.png" width="2" height="2" position="0 4.56767 0" material="" geometry="height: 1.2"
+            rotation="" scale="1 0.6 1" link="href:index.html"></a-image>
+
+        <img id="hero-image" src="images/bk.jpg" crossorigin="anonymous">
+        
+        <!-- Shib Model -->
+        <a-entity gltf-model="models/shiba.glb" scale="" position="-3.05378 1.104 -0.64849" rotation="0 29.999999999999996 0"
+            animation__hmodel="dir: right; loop: 2"></a-entity>
+        <a-entity gltf-model="models/shiba.glb" scale="" position="3.30335 1.10414 -0.59161" rotation="0 -29.999999999999996 0"
+            animation__hmodel="dir: right; loop: 2" id="shibus"></a-entity>
+        <!-- Shib Model -->
+
+        <!-- Mountains -->
+        <a-entity position="0 0 -0.5">
+            <a-entity class="cube" mixin="cube" position="0.30 1.65 0"></a-entity>
+            <a-entity class="cube" mixin="cube" position="0 1.95 0"></a-entity>
+            <a-entity class="cube" mixin="cube" position="-0.30 1.65 0"></a-entity>
+            <a-entity class="cube" mixin="cube" position="0.60 1.35 0"></a-entity>
+            <a-entity class="cube" mixin="cube" position="0.60 1.05 0"></a-entity>
+            <a-entity class="cube" mixin="cube" position="0.60 0.75 0"></a-entity>
+            <a-entity class="cube" mixin="cube" position="0.60 0.45 0"></a-entity>
+            <a-entity class="cube" mixin="cube" position="0.60 0.15 0"></a-entity>
+            <a-entity class="cube" mixin="cube" position="0.30 0.75 0"></a-entity>
+            <a-entity class="cube" mixin="cube" position="0 0.75 0"></a-entity>
+            <a-entity class="cube" mixin="cube" position="-0.30 0.75 0"></a-entity>
+            <a-entity class="cube" mixin="cube" position="-0.60 1.35 0"></a-entity>
+            <a-entity class="cube" mixin="cube" position="-0.60 1.05 0"></a-entity>
+            <a-entity class="cube" mixin="cube" position="-0.60 0.75 0"></a-entity>
+            <a-entity class="cube" mixin="cube" position="-0.60 0.45 0"></a-entity>
+            <a-entity class="cube" mixin="cube" position="-0.60 0.15 0"></a-entity>
+            <a-entity id="sky" geometry="primitive: sphere; radius: 65;"
+                material="shader: skyGradient; colorTop: #7526da; colorBottom: #e885fd; side: back"></a-entity>
+            <a-entity ground></a-entity>
+            <a-entity light="type: point; color: #f4f4f4; intensity: 0.1; distance: 0" position="-2.5 1.2 2.2">
+            </a-entity>
+            <a-entity light="type: point; color: #f4f4f4; intensity: 0.1; distance: 0" position="-20 -7 -40"></a-entity>
+            <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.25;" position="-8 10 -18"></a-entity>
+        </a-entity>
+        <!-- Mountains -->
+
+        <a-entity position="0 1.7 -1" spatial-window="width: 8; height: 4">
+            <!--Left Screen-->
+            <a-entity spatial-hero-image="src: #hero-image; width: 5; height: 3" position="-5.16001 0 2.57572"
+                rotation="0 55.916 0">
+                <a-text font="kelsonsans" value="Hello, Welcome to the World of VR NFT" align="center" width="3"
+                    position="0 0.29 0.001" material="color: #283644" text=""></a-text>
+                <a-text font="kelsonsans" value="Please Connect Your Account" align="center" width="3"
+                    position="0 0 0.001" material="color: #283644" text=""></a-text>
+                <a-entity geometry="primitive: plane; skipCache: true" position="0 -0.4 0.001" scale="0.8 0.25 1"
+                    id="btn-con"
+                    text__text_btn-con="align: center; color: #1d23d3; font: kelsonsans; height: 5.31; transparent: false; value: CONNECT; width: 5.01; zOffset: 0.01; side: double; tabSize: 5; xOffset: 0.02; alphaTest: 0.23"
+                    material="color: #ffffff; flatShading: true; npot: true; shader: flat; side: double; blending: none"
+                    raycaster="" link="href:main.html">
+                    <a-entity material="shader: flat" geometry="primitive: plane; height: 0; width: 0"></a-entity>
+                </a-entity>
+            </a-entity>
+            <!--Left Screen-->
+
+            <!--Center Screen-->
+            <a-entity spatial-hero-image="src: #hero-image; width: 5; height: 3" position="0 0 0.001">
+                <a-text font="kelsonsans" value="Hello, Welcome to the World of VR NFT" align="center" width="3"
+                    position="0 0.29 0.001" material="color: #283644" text=""></a-text>
+                <a-text font="kelsonsans" value="Please Connect Your Account" align="center" width="3"
+                    position="0 0 0.001" material="color: #283644" text=""></a-text>
+                <a-entity geometry="primitive: plane; skipCache: true" position="0 -0.4 0.001" scale="0.8 0.25 1"
+                    id="btn-con"
+                    text__text_btn-con="align: center; color: #1d23d3; font: kelsonsans; height: 5.31; transparent: false; value: CONNECT; width: 5.01; zOffset: 0.01; side: double; tabSize: 5; xOffset: 0.02; alphaTest: 0.23"
+                    material="color: #ffffff; flatShading: true; npot: true; shader: flat; side: double; blending: none"
+                    raycaster="" link="href:main.html">
+                    <a-entity material="shader: flat" geometry="primitive: plane; height: 0; width: 0"></a-entity>
+                </a-entity>
+            </a-entity>
+            <!-- center Screen-->
+            <!-- Right Screen-->
+            <a-entity spatial-hero-image="src: #hero-image;  width: 5; height: 3" position="5.47908 0 2.57572"
+                rotation="0 -55.92 0">
+                <a-text font="kelsonsans" value="Hello, Welcome to the World of VR NFT" align="center" width="3"
+                    position="0 0.29 0.001" material="color: #283644" text=""></a-text>
+                <a-text font="kelsonsans" value="Please Connect Your Account" align="center" width="3"
+                    position="0 0 0.001" material="color: #283644" text=""></a-text>
+                <a-entity geometry="primitive: plane; skipCache: true" position="0 -0.4 0.001" scale="0.8 0.25 1"
+                    id="btn-con"
+                    text__text_btn-con="align: center; color: #1d23d3; font: kelsonsans; height: 5.31; transparent: false; value: CONNECT; width: 5.01; zOffset: 0.01; side: double; tabSize: 5; xOffset: 0.02; alphaTest: 0.23"
+                    material="color: #ffffff; flatShading: true; npot: true; shader: flat; side: double; blending: none"
+                    raycaster="" link="href:main.html">
+                    <a-entity material="shader: flat" geometry="primitive: plane; height: 0; width: 0"></a-entity>
+                </a-entity>
+            </a-entity>
+            <!-- Right Screen-->
+        </a-entity>
+        
+        <!--OCULUS Controls-->
+        <a-entity id="rig">
+            <a-camera position="0 1.6 6.20255" camera="" rotation="" look-controls="" wasd-controls=""
+                data-aframe-inspector-original-camera=""></a-camera>
+            <a-entity id="leftController" oculus-touch-controls="hand: left" oculus-thumbstick-controls></a-entity>
+            <a-entity id="rightController" oculus-touch-controls="hand: right" oculus-thumbstick-controls></a-entity>
+            <a-entity laser-controls="hand: left"></a-entity>
+            <a-entity laser-controls="hand: right"></a-entity>
+        </a-entity>
+    </a-scene>
+    <!--OCULUS Controls-->
+    <script src="js/app.js"></script>
+</body>
+</html>

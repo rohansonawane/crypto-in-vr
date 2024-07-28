@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title>ORIZIN | Algorand Explorer | A-Frame.js Website </title>
+   <meta name="description" content="ORIZIN | Algorand Explorer | A-Frame.js Website ">
+   <script src="js/aframe-master.min.js"></script>
+   <script src="js/aabb-collider.js"></script>
+   <script src="js/grab.js"></script>
+   <script src="js/ground.js"></script>
+   <script src="js/skyGradient.js"></script>
+   <script src="js/spatial-utils.js"></script>
+   <script src="https://unpkg.com/aframe-event-set-component@4.0.1/dist/aframe-event-set-component.min.js"></script>
+   <script src="https://unpkg.com/aframe-slice9-component/dist/aframe-slice9-component.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/jquery.session@1.0.0/jquery.session.min.js"></script>
+   <script src="https://gftruj.github.io/webzamples/aframe/controls/oculus-thumbstick-controls.js"></script>
+</head>
+<body>
+   <a-scene renderer="colorManagement: true;" cursor="rayOrigin: mouse" raycaster="objects: [cube]"
+      fog="color: #bc483e; near: 0; far: 65;">
+      <a-assets>
+         <a-asset-item id="ground" src="https://cdn.aframe.io/examples/tracked-controls/ground.glb"></a-asset-item>
+      </a-assets>
+      <a-image src="images/orizin-logo.png" width="2" height="1.2" position="0 6.75307 -1.53311" material=""
+         geometry="height: 1.2" link="href:index.html"></a-image>
+      <img id="hero-image" src="images/bk.jpg" crossorigin="anonymous">
+      <img id="gradient-img" src="images/white-bg.avif" crossorigin="anonymous">
+      <!--Mountain-->
+      <a-entity position="0 0 -0.5">
+         <a-entity class="cube" mixin="cube" position="0.30 1.65 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="0 1.95 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="-0.30 1.65 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="0.60 1.35 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="0.60 1.05 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="0.60 0.75 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="0.60 0.45 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="0.60 0.15 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="0.30 0.75 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="0 0.75 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="-0.30 0.75 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="-0.60 1.35 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="-0.60 1.05 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="-0.60 0.75 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="-0.60 0.45 0"></a-entity>
+         <a-entity class="cube" mixin="cube" position="-0.60 0.15 0"></a-entity>
+         <a-entity id="sky" geometry="primitive: sphere; radius: 65;"
+            material="shader: skyGradient; colorTop: #7526da; colorBottom: #e885fd; side: back"></a-entity>
+         <a-entity ground></a-entity>
+         <a-entity light="type: point; color: #f4f4f4; intensity: 0.1; distance: 0" position="-2.5 1.2 2.2"></a-entity>
+         <a-entity light="type: point; color: #f4f4f4; intensity: 0.1; distance: 0" position="-20 -7 -40"></a-entity>
+         <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.25;" position="-8 10 -18"></a-entity>
+      </a-entity>
+      <!--3D Models-->
+      <a-entity gltf-model="models/man.glb" animation-mixer="clip: walk;" scale="0.02 0.02 0.02"
+         position="-6.89965 0.063 4.02854" rotation="0 45 0" animation__hmodel="dir: right; loop: 2"></a-entity>
+      <a-entity gltf-model="models/man.glb" animation-mixer="clip: walk;" scale="0.02 0.02 0.02"
+         position="7.25315 0.063 3.25899" rotation="0 -45 0" animation__hmodel="dir: right; loop: 2"></a-entity>
+      <!--3D Models-->
+      <a-entity position="0 1.7 -1" spatial-window="width: 8; height: 4">
+         <a-entity mixin="focus-animation">
+            <!---Bottom Menu--->
+            <a-entity position="0 -1.20159 3.58015" rotation="-25 0 0">
+               <a-text font="kelsonsans" value="Orizin" align="center" width="3" position="0 0.22278 0.06561"
+                  material="color: #283644" text="width: 2; value: Select Menu" scale="1.72742 1.56583 1"></a-text>
+               <!--- Boxes -->
+               <a-entity spatial-hero-image="src: #hero-image; width: 0.8; height: 0.8"
+                  position="-0.677 -0.17133 0.03157"
+                  text__text_service1="align: center; font: kelsonsans; color: #ffffff; letterSpacing: -0.01; value: Algorand Blockchain Explorer; wrapCount: 14.73; zOffset: 0.011; side: double"
+                  scale="0.4 0.4 0.8">
+               </a-entity>
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8"
+                  position="-0.24946 -0.171 0.032"
+                  text__text_service1="align: center; font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: NFT Marketplace; wrapCount: 13.73; zOffset: 0.011; side: double; xOffset: 0.02; tabSize: 4.19"
+                  scale="0.4 0.4 0.8" link="href:nft.html">
+               </a-entity>
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8"
+                  position="0.18871 -0.171 0.032"
+                  text__text_service1="align: center; font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: Pera Wallet; wrapCount: 14.73; zOffset: 0.011; side: double; xOffset: 0.02; tabSize: 4.19"
+                  scale="0.4 0.4 2" link="href:wallet.html">
+               </a-entity>
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8"
+                  position="0.62101 -0.171 0.032"
+                  text__text_service1="align: center; font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: Algorand Smart Contract; wrapCount: 12.82; zOffset: 0.011; side: double; xOffset: 0.02; tabSize: 4.19"
+                  scale="0.4 0.4 2" link="href:smart-contract.html">
+               </a-entity>
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8"
+                  position="0.0512 -0.59789 0.23632"
+                  text__text_service1="align: center; font: kelsonsans; color: #0632e5; letterSpacing: 0.5; value: HOME; wrapCount: 14.73; zOffset: 0.01; side: double"
+                  scale="1 0.2 0.8" link="href: index.html">
+               </a-entity>
+               <!--- Boxes -->
+            </a-entity>
+            <!---Bottom Menu Ends--->
+
+            <!--Left Screen-->
+            <a-entity position="-5.16 0 2.576" rotation="0 55.916 0">
+               <a-text font="kelsonsans" value="Home" align="center" width="3" position="-2.0963 1.28231 0.001"
+                  material="color: #283644" text="width: 2" scale="1.72742 1.56583 1"></a-text>
+               <!--- Boxes -->
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8"
+                  position="-1.89303 0.67198 0.06239"
+                  text__text_service1="align: center; font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: Latest Block 39,636,150; wrapCount: 14.73; zOffset: 0.011; side: double"
+                  scale="1 1 2">
+               </a-entity>
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8"
+                  position="-0.61236 0.70883 0.062"
+                  text__text_service1="align: center; font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: Total transactions 657,541,371; wrapCount: 13.73; zOffset: 0.011; side: double; xOffset: 0.02; tabSize: 4.19"
+                  scale="1 1 2">
+               </a-entity>
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8"
+                  position="0.63797 0.68399 0.062"
+                  text__text_service1="align: center; font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: Genesis ID testnet-v1.0; wrapCount: 14.73; zOffset: 0.011; side: double; xOffset: 0.02; tabSize: 4.19"
+                  scale="1 1 2">
+               </a-entity>
+               <a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8"
+                  position="1.86439 0.67571 0.062"
+                  text__text_service1="align: center; font: kelsonsans; color: #0632e5; letterSpacing: -0.01; value: Build     version     3.23.1; wrapCount: 12.82; zOffset: 0.011; side: double; xOffset: 0.02; tabSize: 4.19"
+                  scale="1 1 2">
+               </a-entity>
+               <!--- Boxes -->
+               <a-text font="kelsonsans" value="Home" align="center" width="3" position="-1.92846 0.05031 0.001"
+                  material="color: #283644" text="width: 1.5; value: Latest Blocks" scale="1.72742 1.56583 1"></a-text>
+               <a-entity id="latest-blocks">
+               </a-entity>
+               <!-- Latest Transaction -->
+               <a-entity position="2.54451 -1.4 0.0125" id="latest-transactions">
+
+               </a-entity>
+            </a-entity>
+            <!--Left Screen-->
+            <!--Center Screen-->
+            <a-entity position="" id="intxn">
+               <a-text font="kelsonsans" value="Transactions" align="center" width="3" position="-1.92957 2.7 0.001"
+                  material="color: #283644" text="width: 2" scale="1.72742 1.56583 1"></a-text>
+            </a-entity>
+
+            <!--Center Screen-->
+
+            <!--Right Screen-->
+            <a-entity position="5.47908 0 2.57572" rotation="0 -55.92 0">
+               <a-text font="kelsonsans" value="Accounts" align="center" width="3" position="-1.92957 1.9 0.001"
+                  material="color: #283644" text="width: 2; value: Accounts" scale="1.72742 1.56583 1"></a-text>
+               <a-entity id="accounts">
+               </a-entity>
+            </a-entity>
+            <!--Right Screen-->
+
+         </a-entity>
+      </a-entity>
+
+
+      <a-entity id="rig">
+         <a-camera position="0 1.6 6.20255" camera="" rotation="" look-controls="" wasd-controls=""
+            data-aframe-inspector-original-camera=""></a-camera>
+         <a-entity id="leftController" oculus-touch-controls="hand: left" oculus-thumbstick-controls></a-entity>
+         <a-entity id="rightController" oculus-touch-controls="hand: right" oculus-thumbstick-controls></a-entity>
+         <a-entity laser-controls="hand: left"></a-entity>
+         <a-entity laser-controls="hand: right"></a-entity>
+      </a-entity>
+   </a-scene>
+   <script src="js/app.js"></script>
+   <!-- Script for Fetching and Showing Transactions -->
+   <script>
+      $(document).ready(function () {
+         //Code for latest Block
+         var round = 39643700;
+         var repetitions = 1;
+         function latest_blocks() {
+            var positiony = 1.4;
+            $("#latest-blocks").empty();
+            for (i = 1; i < 5; i++) {
+               url = 'https://testnet-api.algonode.cloud/v2/blocks/' + round + '?format=json';
+               $.ajax({
+                  url: url,
+                  type: 'GET',
+                  success: function (response) {
+                     var latestBlock = response;
+                     var txns_count = response.block.txns.length;
+                     var txn = response.block.txn;
+                     postxn = -0.2;
+                     $("#latest-transactions").empty();
+                     for (j = 0; j < txns_count && j < 5; j++) {
+                        var txn_id = response.block.txns[j].txn.note;
+                        var txn_sen = response.block.txns[j].txn.snd;
+                        var txn_rec = response.block.txns[j].txn.rcv;
+                        var txn_type = response.block.txns[j].txn.type;
+                        if (txn_type == "appl") {
+                           $("#latest-transactions").append(
+                              '<a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8; roundCorners: false" position="-1.309 ' +
+                              postxn +
+                              ' 0.062" scale="2 0.336 2"><a-text font="kelsonsans" align="center" width="3" position="-0.36208 0.011 -0.01" text="width: 0.8; align: left; value: ' +
+                              txn_id + ' || Payment From : ' + txn_sen +
+                              ' || Payment Type: appl; color: #0008ff; wrapCount: 100; zOffset: 0.06; side: double; height: 1; letterSpacing: 0.05" scale="0.982 5.988 1" id="block-details"></a-text></a-entity>'
+                           )
+                           postxn = postxn + 0.4;
+                        } else {
+                           $("#latest-transactions").append(
+                              '<a-entity spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8; roundCorners: false" position="-1.309 ' +
+                              postxn +
+                              ' 0.062" scale="2 0.336 2"><a-text font="kelsonsans" align="center" width="3" position="-0.36208 0.011 -0.01" text="width: 0.8; align: left; value: ' +
+                              txn_id + ' || Payment From : ' + txn_sen + ' To : ' + txn_rec +
+                              ' || Payment Type: pay; color: #0008ff; wrapCount: 100; zOffset: 0.06; side: double; height: 1; letterSpacing: 0.05" scale="0.982 5.988 1" id="block-details"></a-text></a-entity>'
+                           )
+                           postxn = postxn + 0.4;
+                        }
+                     }
+                     $("#latest-blocks").append('<a-entity data-round="' + round +
+                        '" class="block-detail" spatial-hero-image="src: #gradient-img; width: 0.8; height: 0.8; roundCorners: false" position="-1.309 -' +
+                        positiony +
+                        ' 0.062" scale="2.453 0.336 2"><a-text font="kelsonsans" align="center" width="6" position="-0.321 0.011 -0.03" text="width: 0.3; align: left; value: #' +
+                        round + ' ' + txn +
+                        '; color: #0008ff; wrapCount: 25.04; zOffset: 0.06; side: double; height: 1" scale="0.982 5.988 1" id="block-detailss"></a-text><a-text font="kelsonsans" value="Home" align="center" width="3" position="0.37592 0.02 -0.06" text="width: 0.64; value: ' +
+                        txns_count +
+                        ' Transactions; align: right; color: #001eff; zOffset: 0.151; side: double; height: 0.01" scale="1 4.8734 1" id="lb_tranx_s"></a-text></a-entity>'
+                     );
+                     positiony = positiony - 0.4;
+                     round = round + 1;
+
+                  },
+                  error: function (xhr, status, error) {
+                     console.error('Error fetching latest block:', error);
+                  }
+               });
+            }
+            repetitions++;
+            if (repetitions >= 6) {
+               clearInterval(interval);
+            }
+         }
+         latest_blocks();
+         var interval = setInterval(function () {
+            latest_blocks();
+         }, 4000);
+         function get_transactions() {
+            var $txn_id = ["QOOBRVQMX4HW5QZ2EGLQDQCQTKRF3UP3JKDGKYPCXMI6AVV35KQA",
+               "DM6QB5AHPUC3N5BIPLZWE6HRWPDOS52RKXS6VSLUHTQ4KWVOCCOA",
+               "6XIKFTNVX2ZN5JIO4DL6YA7PB7YDIQD7GGYLUWSBMWODR6I7FHHQ"
+            ];
+            var intxnpos = 1.4;
+            for (k = 0; k < $txn_id.length; k++) {
+
+               url = 'https://testnet-idx.algonode.cloud/v2/transactions/' + $txn_id[k] + '?format=json';
+               $.ajax({
+                  url: url,
+                  type: 'GET',
+                  success: function (response) {
+                     var txnid = response.transaction.id;
+                     var $txn_rec = response.transaction['payment-transaction'].receiver;
+                     var $txn_sen = response.transaction.sender;
+                     var $txn_amt = response.transaction['payment-transaction'].amount / 1000000;
+                     $("#intxn").append('<a-entity position="0 ' + intxnpos +
+                        ' 0"><a-text font="kelsonsans" value="Transactions" align="center" width="3" position="-1.92957 0.95931 -0.31214" material="color: #283644" text="width: 2; value: Sender" scale="1.72742 1.56583 1"></a-text><a-text font="kelsonsans" value="Transactions" align="center" width="3" position="1.95617 0.95931 -0.31214" material="color: #283644" text="width: 2; value: Receiver" scale="1.72742 1.56583 1"></a-text><a-text font="kelsonsans" value="Transactions" align="center" width="3" position="0.13473 0.95931 -0.31214" material="color: #283644" text="width: 1; value: ' +
+                        txnid +
+                        '" scale="1.72742 1.56583 1"></a-text><a-text font="kelsonsans" value="Transactions" align="center" width="3" position="-2.51706 0.02892 -0.31214" material="color: #283644" text="width: 1; value: ' +
+                        $txn_sen +
+                        '; align: left" scale="1.72742 1.56583 1"></a-text><a-text font="kelsonsans" value="Transactions" align="center" width="3" position="2.54431 -0.05874 -0.31214" material="color: #283644" text="width: 1; value:  ' +
+                        $txn_rec +
+                        '; align: right" scale="1.72742 1.56583 1"></a-text><a-box position="0 0.496 -0.76156" width="2" height="2" depth="2" color="#FFFFFF" opacity="0.5" transparent="true" material="" geometry="" scale="2.562 0.325 0.373"></a-box><a-entity gltf-model="models/man.glb" animation-mixer="clip: walk;" scale="0.003 0.003 0.003" position="-2.31862 0.18887 -0.86342" rotation="0 45 0" animation__hmodel="dir: right; loop: 2"></a-entity><a-entity gltf-model="models/man.glb" animation-mixer="clip: walk;" scale="0.003 0.003 0.003" position="2.10509 0.18887 -0.86342" rotation="0 -45 0" animation__hmodel="dir: right; loop: 2"></a-entity><a-entity id="text" position="-1.82709 0.52611 -0.30749" animation="property: position; to: 1.32709 0.52611 -0.30749; dur: 2000; easing: linear; loop: true" text="value: ' +
+                        $txn_amt +
+                        ' Algo; align: center; color: #ffffff; height: 2; side: double" scale="3 3 3"></a-entity> </a-entity>'
+                     );
+                     intxnpos = intxnpos - 1.44036;
+                  },
+                  error: function (xhr, status, error) {
+                     console.error('Error fetching latest block:', error);
+                  }
+               });
+
+            }
+         }
+         get_transactions();
+         function get_accounts() {
+            var amtpos = 1.4;
+            url = 'https://testnet-idx.algonode.cloud/v2/accounts?limit=5&format=json';
+            $.ajax({
+               url: url,
+               type: 'GET',
+               success: function (response) {
+
+                  for ($i = 0; $i < 5; $i++) {
+                     var acc_id = response.accounts[$i].address;
+                     var acc_amt = response.accounts[$i].amount / 100000;
+                     var acc_status = response.accounts[$i].status;
+                     $("#accounts").append(
+                        '<a-entity spatial-hero-image="src: #gradient-img; width: 0.8; roundCorners: false" position="-0.04033 ' +
+                        amtpos +
+                        ' 0.062" scale="5.6 0.46717 1.00007"><a-text font="kelsonsans" align="center" width="3" position="-0.37927 0.05074 -0.01" text="width: 0.3; align: left; value: ' +
+                        acc_id +
+                        '; color: #0008ff; zOffset: 0.06; side: double; height: 1; tabSize: 4.03" scale="1.12323 5.988 1" id="block-details"></a-text><a-text font="kelsonsans" align="center" width="3" position="0.10465 0.05074 -0.01" text="width: 0.31; align: left; value: ' +
+                        acc_amt +
+                        '; color: #0008ff; zOffset: 0.06; side: double; height: 1" scale="0.982 5.988 1" id="block-details-2"></a-text><a-text font="kelsonsans" align="center" width="3" position="0.30217 0.05074 0.001" text="width: 0.31; align: left; value: ' +
+                        acc_status +
+                        '; color: #0008ff; zOffset: 0.06; side: double; height: 1" scale="0.982 5.988 1" id="details-2"></a-text></a-entity>'
+                     );
+                     amtpos = amtpos - 0.62656;
+                  }
+               },
+               error: function (xhr, status, error) {
+                  console.error('Error fetching latest block:', error);
+               }
+            });
+         }
+         get_accounts();
+      });
+   </script>
+</body>
+</html>
